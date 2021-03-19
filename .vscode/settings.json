@@ -1,0 +1,7 @@
+{
+	"terminal.integrated.inheritEnv": true,
+	"terminal.integrated.env.windows": {
+		"Path": "${env:USERPROFILE}/dev/chalet-dev/build/Release;${env:USERPROFILE}/dev/chalet-dev/build/Debug;C:/Program Files/Mono/bin;C:/msys64/mingw64/bin;C:/Program Files/Git/bin;C:/Program Files/Git/usr/bin"
+	},
+	"editor.formatOnSave": true
+}

@@ -1,0 +1,39 @@
+{
+	"version": "0.0.1",
+	"workspace": "cpp-embed-scripting",
+	"environment": {
+		"showCommands": false,
+		"externalDepDir": "chalet_external",
+		"path.windows": [
+			"C:/Program Files/Mono/bin"
+		]
+	},
+	"allProjects": {
+		"language": "C++",
+		"compilerSettings:Cxx": {
+			"cppStandard": "c++20",
+			"cppStandard.macos": "c++2a",
+			"warnings": "pedantic",
+			"includeDirs.windows": [
+				"C:/Program Files/Mono/include/mono-2.0"
+			]
+		}
+	},
+	"projects": [
+		{
+			"name": "cpp-embed-scripting",
+			"kind": "consoleApplication",
+			"location": "src",
+			"compilerSettings:Cxx": {
+				"pch": "src/PCH.hpp",
+				"libDirs.windows": [
+					"C:/Program Files/Mono/lib"
+				],
+				"links.windows": [
+					"mono-2.0-sgen"
+				]
+			},
+			"runProject": true
+		}
+	]
+}
