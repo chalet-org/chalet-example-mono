@@ -10,8 +10,10 @@ class MonoEmbed
 	{
 		var result = gimme();
 		System.Console.WriteLine(result);
+
 		if (result.Equals("All your monos are belong to us!"))
 			return 0;
-		return 100;
+
+		return 1;
 	}
 }

@@ -84,6 +84,11 @@ void MonoRuntime::initialize()
 /*****************************************************************************/
 int MonoRuntime::run(const std::string& inEntryPoint)
 {
+	LOG("----------------------------------------");
+	LOG("");
+
+	int ret = 0;
+
 	{
 		MonoAssembly* assembly;
 		assembly = mono_domain_assembly_open(m_domain, inEntryPoint.data());
@@ -93,15 +98,28 @@ int MonoRuntime::run(const std::string& inEntryPoint)
 			return 2;
 		}
 
-		std::array<char*, 1> args{ const_cast<char*>(inEntryPoint.data()) };
+		MonoImage* image = mono_assembly_get_image(assembly);
+		MonoClass* entryClass = mono_class_from_name(image, "", "MonoEmbed");
+		MonoMethodDesc* mainDesc = mono_method_desc_new("MonoEmbed:Main()", false);
+		MonoMethod* mainMethod = mono_method_desc_search_in_class(mainDesc, entryClass);
 
-		mono_jit_exec(m_domain, assembly, args.size(), args.data());
+		// static method, so no need to pass an object
+		MonoObject* result = mono_runtime_invoke(mainMethod, NULL, NULL, NULL);
+		ret = *(int*)mono_object_unbox(result);
+
+		mono_free_method(mainMethod);
+		mono_method_desc_free(mainDesc);
+
+		// std::array<char*, 1> args{ const_cast<char*>(inEntryPoint.data()) };
+
+		// mono_jit_exec(m_domain, assembly, args.size(), args.data());
+		// ret = mono_environment_exitcode_get();
 	}
 
-	int ret = mono_environment_exitcode_get();
 	LOG("");
 	LOG("----------------------------------------");
-	LOG(inEntryPoint, "exited with code", ret);
+	LOG(inEntryPoint, "exited with code:", ret);
+
 	return ret;
 }
 }

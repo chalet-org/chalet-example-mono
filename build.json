@@ -15,6 +15,9 @@
 			"cppStandard.macos": "c++2a",
 			"warnings": "pedantic",
 			"posixThreads": true,
+			"defines:Debug": [
+				"_DEBUG"
+			],
 			"includeDirs.windows": [
 				"C:/Program Files/Mono/include/mono-2.0"
 			],
