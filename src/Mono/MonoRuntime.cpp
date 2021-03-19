@@ -1,5 +1,7 @@
 #include "Mono/MonoRuntime.hpp"
 
+#include <array>
+
 namespace monoscript
 {
 namespace
@@ -60,14 +62,19 @@ void MonoRuntime::initialize()
 /*****************************************************************************/
 int MonoRuntime::run(const std::string& inEntryPoint)
 {
-	m_assembly = mono_domain_assembly_open(m_domain, inEntryPoint.data());
-	if (!m_assembly)
 	{
-		std::cerr << "Big ol' error" << std::endl;
-		return 2;
-	}
+		MonoAssembly* assembly;
+		assembly = mono_domain_assembly_open(m_domain, inEntryPoint.data());
+		if (!assembly)
+		{
+			std::cerr << "Big ol' error" << std::endl;
+			return 2;
+		}
 
-	mono_jit_exec(m_domain, m_assembly, 0, nullptr);
+		std::array<char*, 1> args{ const_cast<char*>(inEntryPoint.data()) };
+
+		mono_jit_exec(m_domain, assembly, args.size(), args.data());
+	}
 
 	int ret = mono_environment_exitcode_get();
 	return ret;

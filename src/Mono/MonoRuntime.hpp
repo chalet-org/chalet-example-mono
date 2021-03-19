@@ -23,7 +23,6 @@ private:
 	std::string m_domainName;
 
 	MonoDomain* m_domain = nullptr;
-	MonoAssembly* m_assembly = nullptr;
 
 	bool m_initialized = false;
 };
