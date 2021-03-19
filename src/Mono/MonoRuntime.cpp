@@ -6,12 +6,30 @@ namespace monoscript
 {
 namespace
 {
-static int malloc_count = 0;
+static std::size_t malloc_count = 0;
+static std::size_t calloc_count = 0;
+static std::size_t realloc_count = 0;
+static std::size_t free_count = 0;
 
-static void* custom_malloc(size_t bytes)
+static void* custom_malloc(std::size_t bytes)
 {
 	++malloc_count;
 	return ::malloc(bytes);
+}
+static void* custom_calloc(std::size_t count, std::size_t bytes)
+{
+	++calloc_count;
+	return ::calloc(count, bytes);
+}
+static void* custom_realloc(void* ptr, std::size_t bytes)
+{
+	++realloc_count;
+	return ::realloc(ptr, bytes);
+}
+static void custom_free(void* mem)
+{
+	++free_count;
+	return ::free(mem);
 }
 }
 /*****************************************************************************/
@@ -26,7 +44,12 @@ MonoRuntime::~MonoRuntime()
 	mono_jit_cleanup(m_domain);
 	m_domain = nullptr;
 
-	LOG("custom malloc calls = ", malloc_count);
+	LOG("----------------------------------------");
+	LOG("native malloc calls = ", malloc_count);
+	LOG("native calloc calls = ", calloc_count);
+	LOG("native realloc calls = ", realloc_count);
+	LOG("native free calls = ", free_count);
+	LOG("----------------------------------------");
 }
 
 /*****************************************************************************/
@@ -38,13 +61,12 @@ void MonoRuntime::initialize()
 		std::exit(2);
 	}
 
-	MonoAllocatorVTable mem_vtable = { MONO_ALLOCATOR_VTABLE_VERSION, custom_malloc, NULL, NULL, NULL };
-	// MonoAllocatorVTable mem_vtable;
-	// mem_vtable.version = MONO_ALLOCATOR_VTABLE_VERSION;
-	// mem_vtable.malloc = custom_malloc;
-	// mem_vtable.realloc = NULL;
-	// mem_vtable.free = NULL;
-	// mem_vtable.calloc = NULL;
+	MonoAllocatorVTable mem_vtable;
+	mem_vtable.version = MONO_ALLOCATOR_VTABLE_VERSION;
+	mem_vtable.malloc = custom_malloc;
+	mem_vtable.calloc = custom_calloc;
+	mem_vtable.realloc = custom_realloc;
+	mem_vtable.free = custom_free;
 
 	mono_set_allocator_vtable(&mem_vtable);
 
@@ -77,6 +99,9 @@ int MonoRuntime::run(const std::string& inEntryPoint)
 	}
 
 	int ret = mono_environment_exitcode_get();
+	LOG("");
+	LOG("----------------------------------------");
+	LOG(inEntryPoint, "exited with code", ret);
 	return ret;
 }
 }
