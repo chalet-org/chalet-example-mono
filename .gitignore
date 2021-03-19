@@ -7,3 +7,6 @@ build
 dist
 chalet_external/
 
+# Mono / C#
+*.out
+mono_crash*.json

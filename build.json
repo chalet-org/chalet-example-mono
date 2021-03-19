@@ -14,6 +14,7 @@
 			"cppStandard": "c++20",
 			"cppStandard.macos": "c++2a",
 			"warnings": "pedantic",
+			"posixThreads": true,
 			"includeDirs.windows": [
 				"C:/Program Files/Mono/include/mono-2.0"
 			],
@@ -29,6 +30,9 @@
 			"location": "src",
 			"compilerSettings:Cxx": {
 				"pch": "src/PCH.hpp",
+				"defines": [
+					"_THREAD_SAFE"
+				],
 				"libDirs.windows": [
 					"C:/Program Files/Mono/lib"
 				],
@@ -39,7 +43,8 @@
 					"mono-2.0-sgen"
 				],
 				"links.macos": [
-					"mono-2.0"
+					"mono-2.0",
+					"iconv"
 				]
 			},
 			"runProject": true
