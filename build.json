@@ -16,6 +16,9 @@
 			"warnings": "pedantic",
 			"includeDirs.windows": [
 				"C:/Program Files/Mono/include/mono-2.0"
+			],
+			"includeDirs.macos": [
+				"/Library/Frameworks/Mono.framework/Versions/Current/include/mono-2.0"
 			]
 		}
 	},
@@ -29,8 +32,14 @@
 				"libDirs.windows": [
 					"C:/Program Files/Mono/lib"
 				],
+				"libDirs.macos": [
+					"/Library/Frameworks/Mono.framework/Versions/Current/lib"
+				],
 				"links.windows": [
 					"mono-2.0-sgen"
+				],
+				"links.macos": [
+					"mono-2.0"
 				]
 			},
 			"runProject": true

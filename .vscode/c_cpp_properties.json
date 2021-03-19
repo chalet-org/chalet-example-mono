@@ -27,6 +27,7 @@
 			],
 			"includePath": [
 				"${workspaceFolder}/src",
+				"/Library/Frameworks/Mono.framework/Versions/Current/include/mono-2.0",
 				"/usr/local/include/**"
 			],
 			"defines": [
