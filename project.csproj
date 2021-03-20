@@ -12,11 +12,8 @@
 		<OutputPath>.</OutputPath>
 	</PropertyGroup>
 
-	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-		<AssemblyName>cs-test-d</AssemblyName>
-	</PropertyGroup>
-
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<AssemblyName>cs-test-d</AssemblyName>
 		<DebugSymbols>false</DebugSymbols>
 		<DebugType>full</DebugType>
 		<Optimize>false</Optimize>

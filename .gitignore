@@ -8,6 +8,7 @@ dist
 chalet_external/
 
 # Mono / C#
+.vs
 csbuild/
 cs-test*.dll
 cs-test*.pdb
