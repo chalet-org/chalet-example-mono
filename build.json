@@ -5,6 +5,7 @@
 		"showCommands": false,
 		"externalDepDir": "chalet_external",
 		"path.windows": [
+			"C/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin",
 			"C:/Program Files/Mono/bin"
 		]
 	},
@@ -19,7 +20,7 @@
 			"cppStandard.macos": "c++2a",
 			"warnings": "pedantic",
 			"posixThreads": true,
-			"defines:Debug": [
+			"defines:debug": [
 				"_DEBUG"
 			],
 			"includeDirs.windows": [
@@ -55,7 +56,9 @@
 				]
 			},
 			"runProject": true,
-			"preBuild": "msbuild.sh"
+			"preBuild:!debug": "csbuild_Release.sh",
+			"preBuild:debug.windows": "msbuild.exe",
+			"preBuild:debug.!windows": "msbuild"
 		}
 	]
 }
