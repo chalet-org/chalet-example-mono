@@ -41,8 +41,17 @@ MonoRuntime::MonoRuntime(const std::string& inDomainName) :
 /*****************************************************************************/
 MonoRuntime::~MonoRuntime()
 {
-	mono_jit_cleanup(m_domain);
-	m_domain = nullptr;
+	// Note: Not sure yet if deleters are needed for these.
+	//   Bad things seemed to happen with close/free related mono_ functions
+	m_assemblyImage = nullptr;
+	m_assembly = nullptr;
+
+	// Do the main cleanup here
+	if (m_domain != nullptr)
+	{
+		mono_jit_cleanup(m_domain);
+		m_domain = nullptr;
+	}
 
 	LOG("----------------------------------------");
 	LOG("native malloc calls = ", malloc_count);
@@ -53,13 +62,10 @@ MonoRuntime::~MonoRuntime()
 }
 
 /*****************************************************************************/
-void MonoRuntime::initialize()
+bool MonoRuntime::initialize()
 {
 	if (m_initialized)
-	{
-		std::cerr << "MonoRuntime::initialize() called twice" << std::endl;
-		std::exit(2);
-	}
+		return false;
 
 	MonoAllocatorVTable mem_vtable;
 	mem_vtable.version = MONO_ALLOCATOR_VTABLE_VERSION;
@@ -79,42 +85,68 @@ void MonoRuntime::initialize()
 	// m_domain = mono_jit_init_version(m_domainName.c_str(), "v4.0.30319");
 
 	m_initialized = true;
+
+	return true;
 }
 
 /*****************************************************************************/
-int MonoRuntime::run(const std::string& inEntryPoint)
+bool MonoRuntime::openDomainAssembly(const std::string& inBinary)
 {
+	if (m_assembly != nullptr)
+		return false;
+
 	LOG("----------------------------------------");
 	LOG("");
 
+	m_assembly = mono_domain_assembly_open(m_domain, inBinary.data());
+	if (!m_assembly)
+		return false;
+
+	m_assemblyImage = mono_assembly_get_image(m_assembly);
+
+	return true;
+}
+
+/*****************************************************************************/
+int MonoRuntime::callNonStandardMain(const std::string& inClass, const std::string& inMethodName)
+{
+	return callNonStandardMain("", inClass, inMethodName);
+}
+
+/*****************************************************************************/
+int MonoRuntime::callNonStandardMain(const std::string& inNamespace, const std::string& inClass, const std::string& inMethodName)
+{
 	int ret = 0;
 
-	{
-		MonoAssembly* assembly;
-		assembly = mono_domain_assembly_open(m_domain, inEntryPoint.data());
-		if (!assembly)
-		{
-			std::cerr << "Big ol' error" << std::endl;
-			return 2;
-		}
+	// TODO: Caching of methods & classes
 
-		MonoImage* image = mono_assembly_get_image(assembly);
-		MonoClass* entryClass = mono_class_from_name(image, "", "MonoEmbed");
-		MonoMethodDesc* mainDesc = mono_method_desc_new("MonoEmbed:Main()", false);
-		MonoMethod* mainMethod = mono_method_desc_search_in_class(mainDesc, entryClass);
+	MonoClass* entryClass = mono_class_from_name(m_assemblyImage, inNamespace.data(), inClass.data());
 
-		// static method, so no need to pass an object
-		MonoObject* result = mono_runtime_invoke(mainMethod, NULL, NULL, NULL);
-		ret = *(int*)mono_object_unbox(result);
+	std::string methodName = inClass + ":" + inMethodName;
+	MonoMethodDesc* mainDesc = mono_method_desc_new(methodName.data(), !inNamespace.empty());
+	MonoMethod* mainMethod = mono_method_desc_search_in_class(mainDesc, entryClass);
 
-		mono_free_method(mainMethod);
-		mono_method_desc_free(mainDesc);
+	// static method, so no need to pass an object
+	MonoObject* result = mono_runtime_invoke(mainMethod, NULL, NULL, NULL);
+	ret = *(int*)mono_object_unbox(result);
 
-		// std::array<char*, 1> args{ const_cast<char*>(inEntryPoint.data()) };
+	mono_free_method(mainMethod);
+	mono_method_desc_free(mainDesc);
 
-		// mono_jit_exec(m_domain, assembly, args.size(), args.data());
-		// ret = mono_environment_exitcode_get();
-	}
+	LOG("");
+	LOG("----------------------------------------");
+	LOG(inMethodName, "exited with code:", ret);
+
+	return ret;
+}
+
+/*****************************************************************************/
+int MonoRuntime::runMain(const std::string& inEntryPoint)
+{
+	std::array<char*, 1> args{ const_cast<char*>(inEntryPoint.data()) };
+
+	mono_jit_exec(m_domain, m_assembly, args.size(), args.data());
+	int ret = mono_environment_exitcode_get();
 
 	LOG("");
 	LOG("----------------------------------------");

@@ -8,6 +8,10 @@
 			"C:/Program Files/Mono/bin"
 		]
 	},
+	"configurations": [
+		"Debug",
+		"Release"
+	],
 	"allProjects": {
 		"language": "C++",
 		"compilerSettings:Cxx": {
