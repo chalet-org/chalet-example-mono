@@ -9,6 +9,6 @@ chalet_external/
 
 # Mono / C#
 msbuild
-cs-test.dll
-cs-test.pdb
+cs-test*.dll
+cs-test*.pdb
 mono_crash*.json
