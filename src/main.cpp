@@ -4,7 +4,6 @@
 
 int main(/*const int argc, const char* const argv[]*/)
 {
-
 #if defined(MONOSCRIPT_DEBUG)
 	const std::string file = "cs-test-d.dll";
 	// #if defined(MONOSCRIPT_WIN32)
@@ -23,10 +22,21 @@ int main(/*const int argc, const char* const argv[]*/)
 
 	const std::string domain = "monoscript";
 	monoscript::MonoRuntime runtime(domain);
-	runtime.initialize();
+	if (!runtime.initialize())
+	{
+		std::cerr << "The Mono Runtime couldn't initialize." << std::endl;
+		return 1;
+	}
+
 	runtime.addCallback("MonoEmbed::gimme", MonoEmbed::gimme);
 
-	int result = runtime.run(file);
+	if (!runtime.openDomainAssembly(file))
+	{
+		std::cerr << "The Mono domain assembly for " << file << " couldn't be opened." << std::endl;
+		return 1;
+	}
+
+	int result = runtime.callNonStandardMain("MonoEmbed", "Main()");
 
 	return result;
 }
