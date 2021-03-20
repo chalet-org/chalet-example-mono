@@ -9,21 +9,6 @@
 				"kind": "build",
 				"isDefault": true
 			},
-			"dependsOn":[
-				"MSBuild: Debug"
-			],
-			"problemMatcher": [
-				"$gcc"
-			]
-		},
-		{
-			"label": "MSBuild: Debug",
-			"command": "./msbuild.sh",
-			"type": "shell",
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
 			"problemMatcher": [
 				"$gcc"
 			]

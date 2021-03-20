@@ -54,7 +54,8 @@
 					"iconv"
 				]
 			},
-			"runProject": true
+			"runProject": true,
+			"preBuild": "msbuild.sh"
 		}
 	]
 }
