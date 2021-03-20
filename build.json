@@ -1,6 +1,6 @@
 {
 	"version": "0.0.1",
-	"workspace": "cpp-embed-scripting",
+	"workspace": "chalet-example-monoscript",
 	"environment": {
 		"showCommands": false,
 		"externalDepDir": "chalet_external",
@@ -28,7 +28,7 @@
 	},
 	"projects": [
 		{
-			"name": "cpp-embed-scripting",
+			"name": "chalet-example-monoscript",
 			"kind": "consoleApplication",
 			"location": "src",
 			"compilerSettings:Cxx": {

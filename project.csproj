@@ -4,7 +4,7 @@
 		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 		<OutputType>Library</OutputType>
-		<BaseIntermediateOutputPath>msbuild/</BaseIntermediateOutputPath>
+		<BaseIntermediateOutputPath>csbuild/</BaseIntermediateOutputPath>
 		<AssemblyName>cs-test</AssemblyName>
 		<TargetFramework>net48</TargetFramework>
 		<FileAlignment>512</FileAlignment>

@@ -1,0 +1,38 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "GDB/LLDB",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/build/Debug/chalet-example-monoscript",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"preLaunchTask": "Build: Debug",
+			"externalConsole": false,
+			"internalConsoleOptions": "neverOpen",
+			"windows": {
+				"program": "${workspaceFolder}/build/Debug/chalet-example-monoscript.exe",
+				"MIMode": "gdb",
+				"miDebuggerPath": "C:/msys64/mingw64/bin/gdb.exe",
+				"env": {
+					"Path": "${config:terminal.integrated.env.windows.Path}",
+				}
+			},
+			"linux": {
+				"MIMode": "gdb",
+				"miDebuggerPath": "/usr/bin/gdb",
+				"env": {
+					"PATH": "${config:terminal.integrated.env.linux.PATH}"
+				}
+			},
+			"osx": {
+				"MIMode": "lldb",
+				"env": {
+					"PATH": "${config:terminal.integrated.env.osx.PATH}"
+				}
+			}
+		}
+	]
+}

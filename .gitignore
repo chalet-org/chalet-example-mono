@@ -8,7 +8,7 @@ dist
 chalet_external/
 
 # Mono / C#
-msbuild
+csbuild/
 cs-test*.dll
 cs-test*.pdb
 mono_crash*.json

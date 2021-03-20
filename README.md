@@ -1,4 +1,4 @@
-## cpp-embed-scripting
+## chalet-example-monoscript
 
 # Mono / C# Scripting in a C++ application (mainly for games)
 
