@@ -122,7 +122,12 @@ int MonoRuntime::callNonStandardMain(const std::string& inNamespace, const std::
 
 	MonoClass* entryClass = mono_class_from_name(m_assemblyImage, inNamespace.data(), inClass.data());
 
-	std::string methodName = inClass + ":" + inMethodName;
+	std::string methodName;
+	if (inClass.empty())
+		methodName = inMethodName;
+	else
+		methodName = inClass + ":" + inMethodName;
+
 	MonoMethodDesc* mainDesc = mono_method_desc_new(methodName.data(), !inNamespace.empty());
 	MonoMethod* mainMethod = mono_method_desc_search_in_class(mainDesc, entryClass);
 

@@ -38,7 +38,7 @@ struct MonoRuntime
 
 	/**
 		@brief Call a non-standard static Main function that takes no paramaeters and returns an int, from a dynamic library for example
-		@param inNamespace
+		@param inNamespace The namespace of the class / method
 		@param inClass The name of the class
 		@param inMethodName The name of the static method
 		@return int The result of the method
