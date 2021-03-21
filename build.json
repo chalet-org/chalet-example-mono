@@ -57,8 +57,7 @@
 			},
 			"runProject": true,
 			"preBuild:!debug": "csbuild_Release.sh",
-			"preBuild:debug.windows": "msbuild.exe",
-			"preBuild:debug.!windows": "msbuild"
+			"preBuild:debug": "csbuild_Debug.sh"
 		}
 	]
 }
