@@ -5,7 +5,7 @@ if [[ $OSTYPE == 'msys' || $OSTYPE == 'win32' ]]; then
 fi
 
 if [[ $PLATFORM == "windows" ]]; then
-	msbuild.exe /clp:ForceConsoleColor /property:Configuration=Release
+	msbuild.exe /clp:ForceConsoleColor /property:Configuration=Debug
 else
-	msbuild /clp:ForceConsoleColor /property:Configuration=Release
+	msbuild /clp:ForceConsoleColor /property:Configuration=Debug
 fi
