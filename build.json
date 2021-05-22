@@ -34,8 +34,10 @@
 	"projects": {
 		"csbuild-step": {
 			"description": "MSBuild: Compile C#",
-			"script:!debug": "csbuild_Release.sh",
-			"script:debug": "csbuild_Debug.sh"
+			"script:!debug.!windows": "csbuild_Release.sh",
+			"script:!debug.windows": "csbuild_Release.bat",
+			"script:debug.!windows": "csbuild_Debug.sh",
+			"script:debug.windows": "csbuild_Debug.bat"
 		},
 		"chalet-example-monoscript": {
 			"kind": "consoleApplication",

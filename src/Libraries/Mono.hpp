@@ -1,8 +1,10 @@
 #ifndef LIB_MONO_HPP
 #define LIB_MONO_HPP
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wpedantic"
+#ifndef _MSC_VER
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wpedantic"
+#endif
 
 #include <mono/jit/jit.h>
 #include <mono/metadata/assembly.h>
@@ -11,6 +13,8 @@
 #include <mono/metadata/mono-config.h>
 #include <mono/utils/mono-publib.h>
 
-#pragma GCC diagnostic pop
+#ifndef _MSC_VER
+	#pragma GCC diagnostic pop
+#endif
 
 #endif // LIB_MONO_HPP

@@ -150,7 +150,7 @@ int MonoRuntime::runMain(const std::string& inEntryPoint)
 {
 	std::array<char*, 1> args{ const_cast<char*>(inEntryPoint.data()) };
 
-	mono_jit_exec(m_domain, m_assembly, args.size(), args.data());
+	mono_jit_exec(m_domain, m_assembly, static_cast<int>(args.size()), args.data());
 	int ret = mono_environment_exitcode_get();
 
 	LOG("");
