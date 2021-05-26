@@ -1,13 +1,10 @@
 {
 	"version": "0.0.1",
-	"workspace": "chalet-example-monoscript",
+	"workspace": "chalet-example-mono",
 	"environment": {
 		"showCommands": false,
 		"externalDepDir": "chalet_external",
-		"path.windows": [
-			"C/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin",
-			"C:/Program Files/Mono/bin"
-		]
+		"path.windows": []
 	},
 	"configurations": [
 		"Debug",
@@ -39,7 +36,7 @@
 			"script:debug.!windows": "csbuild_Debug.sh",
 			"script:debug.windows": "csbuild_Debug.bat"
 		},
-		"chalet-example-monoscript": {
+		"chalet-example-mono": {
 			"kind": "consoleApplication",
 			"location": "src",
 			"compilerSettings:Cxx": {

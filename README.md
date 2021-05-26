@@ -1,4 +1,4 @@
-## chalet-example-monoscript
+## chalet-example-mono
 
 # Mono / C# Scripting in a C++ application (mainly for games)
 
