@@ -1,8 +1,4 @@
 {
-	"terminal.integrated.inheritEnv": true,
-	"terminal.integrated.env.windows": {
-		"Path": "${env:USERPROFILE}/dev/chalet-dev/build/Release;${env:USERPROFILE}/dev/chalet-dev/build/Debug;C:/msys64/mingw64/bin;C:/Program Files/Git/bin;C:/Program Files/Git/usr/bin;${env:MSBUILD_PATH};C:/Program Files/Mono/bin"
-	},
 	"files.exclude": {
 		".vs": true
 	},

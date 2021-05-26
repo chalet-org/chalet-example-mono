@@ -2,6 +2,15 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "MSVC",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/build/Debug/chalet-example-monoscript",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}"
+		},
+		{
 			"name": "GDB/LLDB",
 			"type": "cppdbg",
 			"request": "launch",
@@ -15,23 +24,14 @@
 			"windows": {
 				"program": "${workspaceFolder}/build/Debug/chalet-example-monoscript.exe",
 				"MIMode": "gdb",
-				"miDebuggerPath": "C:/msys64/mingw64/bin/gdb.exe",
-				"env": {
-					"Path": "${config:terminal.integrated.env.windows.Path}",
-				}
+				"miDebuggerPath": "C:/msys64/mingw64/bin/gdb.exe"
 			},
 			"linux": {
 				"MIMode": "gdb",
-				"miDebuggerPath": "/usr/bin/gdb",
-				"env": {
-					"PATH": "${config:terminal.integrated.env.linux.PATH}"
-				}
+				"miDebuggerPath": "/usr/bin/gdb"
 			},
 			"osx": {
-				"MIMode": "lldb",
-				"env": {
-					"PATH": "${config:terminal.integrated.env.osx.PATH}"
-				}
+				"MIMode": "lldb"
 			}
 		}
 	]
