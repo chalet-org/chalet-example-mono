@@ -1,22 +1,18 @@
 {
 	"version": "0.0.1",
 	"workspace": "chalet-example-mono",
-	"environment": {
-		"showCommands": false,
-		"externalDepDir": "chalet_external",
-		"path.windows": []
-	},
+	"externalDepDir": "chalet_external",
+	"path.windows": [],
 	"configurations": [
 		"Debug",
 		"Release"
 	],
-	"templates:all": {
+	"abstracts:all": {
 		"language": "C++",
-		"compilerSettings:Cxx": {
+		"settings:Cxx": {
 			"cppStandard": "c++20",
 			"cppStandard.macos": "c++2a",
 			"warnings": "pedantic",
-			"posixThreads": true,
 			"defines:debug": [
 				"_DEBUG"
 			],
@@ -28,7 +24,7 @@
 			]
 		}
 	},
-	"projects": {
+	"targets": {
 		"csbuild-step": {
 			"description": "MSBuild: Compile C#",
 			"script:!debug.!windows": "csbuild_Release.sh",
@@ -39,7 +35,7 @@
 		"chalet-example-mono": {
 			"kind": "consoleApplication",
 			"location": "src",
-			"compilerSettings:Cxx": {
+			"settings:Cxx": {
 				"pch": "src/PCH.hpp",
 				"defines": [
 					"_THREAD_SAFE"
