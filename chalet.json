@@ -16,10 +16,13 @@
 				"_DEBUG"
 			],
 			"includeDirs.windows": [
-				"C:/Program Files/Mono/include/mono-2.0"
+				"${env:ProgramFiles}/Mono/include/mono-2.0"
 			],
 			"includeDirs.macos": [
 				"/Library/Frameworks/Mono.framework/Versions/Current/include/mono-2.0"
+			],
+			"includeDirs.linux": [
+				"/usr/include/mono-2.0"
 			]
 		}
 	},
@@ -41,7 +44,7 @@
 					"_THREAD_SAFE"
 				],
 				"libDirs.windows": [
-					"C:/Program Files/Mono/lib"
+					"${env:ProgramFiles}/Mono/lib"
 				],
 				"libDirs.macos": [
 					"/Library/Frameworks/Mono.framework/Versions/Current/lib"
@@ -52,6 +55,9 @@
 				"links.macos": [
 					"mono-2.0",
 					"iconv"
+				],
+				"links.linux": [
+					"mono-2.0"
 				]
 			}
 		}

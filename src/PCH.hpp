@@ -16,6 +16,7 @@
 
 // Additional
 #include <cassert>
+#include <limits>
 #include <sstream>
 
 // Utils
