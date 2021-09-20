@@ -34,7 +34,7 @@
 			"script:debug.windows": "csbuild_Debug.bat"
 		},
 		"chalet-example-mono": {
-			"kind": "consoleApplication",
+			"kind": "executable",
 			"location": "src",
 			"runProject": true,
 			"settings:Cxx": {
