@@ -11,7 +11,7 @@
 			"cppStandard": "c++20",
 			"cppStandard.macos": "c++2a",
 			"warnings": "pedantic",
-			"defines:debug": [
+			"defines.debug": [
 				"_DEBUG"
 			],
 			"includeDirs.windows": [
@@ -28,10 +28,10 @@
 	"targets": {
 		"csbuild-step": {
 			"description": "MSBuild: Compile C#",
-			"script:!debug.!windows": "csbuild_Release.sh",
-			"script:!debug.windows": "csbuild_Release.bat",
-			"script:debug.!windows": "csbuild_Debug.sh",
-			"script:debug.windows": "csbuild_Debug.bat"
+			"script.!debug.!windows": "csbuild_Release.sh",
+			"script.!debug.windows": "csbuild_Release.bat",
+			"script.debug.!windows": "csbuild_Debug.sh",
+			"script.debug.windows": "csbuild_Debug.bat"
 		},
 		"chalet-example-mono": {
 			"kind": "executable",
