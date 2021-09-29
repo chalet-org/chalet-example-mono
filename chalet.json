@@ -27,6 +27,7 @@
 	},
 	"targets": {
 		"csbuild-step": {
+			"kind": "script",
 			"description": "MSBuild: Compile C#",
 			"script.!debug.!windows": "csbuild_Release.sh",
 			"script.!debug.windows": "csbuild_Release.bat",
