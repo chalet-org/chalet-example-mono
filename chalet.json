@@ -37,7 +37,7 @@
 		"chalet-example-mono": {
 			"kind": "executable",
 			"location": "src",
-			"runProject": true,
+			"runTarget": true,
 			"settings:Cxx": {
 				"pch": "src/PCH.hpp",
 				"defines": [
