@@ -5,7 +5,7 @@
 		"Debug",
 		"Release"
 	],
-	"abstracts:all": {
+	"abstracts:*": {
 		"language": "C++",
 		"settings:Cxx": {
 			"cppStandard": "c++20",
