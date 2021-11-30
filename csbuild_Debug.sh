@@ -1,3 +1,3 @@
 #!/bin/bash
 
-msbuild /clp:ForceConsoleColor /property:Configuration=Debug /property:Platform=AnyCPU
+msbuild /nologo /clp:ForceConsoleColor /property:Configuration=Debug /property:Platform=AnyCPU
