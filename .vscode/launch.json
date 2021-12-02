@@ -5,13 +5,13 @@
 			"name": "MSVC",
 			"type": "cppvsdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/build/Debug/chalet-example-mono.exe",
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"console": "integratedTerminal",
-			"envFile": "${workspaceFolder}/.env.windows",
-			"preLaunchTask": "Build: Debug"
+			"preLaunchTask": "Build: Debug",
+			"program": "${workspaceFolder}/build/x64-pc-windows-msvc17_Debug/chalet-example-mono.exe",
+			"envFile": "${workspaceFolder}/build/x64-pc-windows-msvc17_Debug/run.env"
 		},
 		{
 			"name": "GDB/LLDB",
