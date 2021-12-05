@@ -1,7 +1,7 @@
 {
 	"version": "0.0.1",
 	"workspace": "chalet-example-mono",
-	"configurations": [
+	"defaultConfigurations": [
 		"Debug",
 		"Release"
 	],
