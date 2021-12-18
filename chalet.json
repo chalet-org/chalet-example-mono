@@ -29,10 +29,10 @@
 		"csbuild-step": {
 			"kind": "script",
 			"description": "MSBuild: Compile C#",
-			"script.!debug.!windows": "csbuild_Release.sh",
-			"script.!debug.windows": "csbuild_Release.bat",
-			"script.debug.!windows": "csbuild_Debug.sh",
-			"script.debug.windows": "csbuild_Debug.bat"
+			"file.!debug.!windows": "csbuild_Release.sh",
+			"file.!debug.windows": "csbuild_Release.bat",
+			"file.debug.!windows": "csbuild_Debug.sh",
+			"file.debug.windows": "csbuild_Debug.bat"
 		},
 		"chalet-example-mono": {
 			"kind": "executable",
