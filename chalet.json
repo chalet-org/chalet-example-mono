@@ -5,6 +5,9 @@
 		"Debug",
 		"Release"
 	],
+	"searchPaths.windows": [
+		"${env:ProgramFiles}/Mono/bin"
+	],
 	"abstracts:*": {
 		"language": "C++",
 		"settings:Cxx": {
