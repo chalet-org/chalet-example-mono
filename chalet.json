@@ -6,7 +6,8 @@
 		"Release"
 	],
 	"searchPaths.windows": [
-		"${env:ProgramFiles}/Mono/bin"
+		"${env:ProgramFiles}/Mono/bin",
+		"${env:ProgramFiles}/Mono/lib/mono/4.5"
 	],
 	"abstracts:*": {
 		"language": "C++",
@@ -34,10 +35,13 @@
 			"description": "MSBuild: Compile C#",
 			"path": "msbuild",
 			"arguments": [
-				"/nologo",
-				"/clp:ForceConsoleColor",
-				"/property:Configuration=${configuration}",
-				"/property:Platform=AnyCPU"
+				"-nologo",
+				"-verbosity:m",
+				"-clp:ForceConsoleColor",
+				// "-property:OutputPath=${buildDir}",
+				"-property:Configuration=${configuration}",
+				"-property:Platform=AnyCPU",
+				"project.csproj"
 			]
 		},
 		"chalet-example-mono": {
@@ -45,6 +49,7 @@
 			"location": "src",
 			"runTarget": true,
 			"settings:Cxx": {
+				"staticLinking": true,
 				"pch": "src/PCH.hpp",
 				"defines": [
 					"_THREAD_SAFE"
@@ -66,6 +71,30 @@
 					"mono-2.0"
 				]
 			}
+		}
+	},
+	"distribution": {
+		"libmono": {
+			"kind": "bundle",
+			"configuration": "Release",
+			"subdirectory": "lib/mono/4.5",
+			"include": [
+				"mscorlib"
+			],
+			"include.windows": [
+				"mscorlib.dll"
+			]
+		},
+		"all": {
+			"kind": "bundle",
+			"configuration": "Release",
+			"subdirectory": "bin",
+			"buildTargets": "*",
+			"includeDependentSharedLibraries": false,
+			"include.windows": [
+				"cs-test.dll",
+				"mono-2.0-sgen.dll"
+			]
 		}
 	}
 }
