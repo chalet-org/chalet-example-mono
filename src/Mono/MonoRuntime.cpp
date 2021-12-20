@@ -58,7 +58,7 @@ MonoRuntime::~MonoRuntime()
 	LOG("native calloc calls = ", calloc_count);
 	LOG("native realloc calls = ", realloc_count);
 	LOG("native free calls = ", free_count);
-	LOG("----------------------------------------");
+	// LOG("----------------------------------------");
 }
 
 /*****************************************************************************/
@@ -95,8 +95,8 @@ bool MonoRuntime::openDomainAssembly(const std::string& inBinary)
 	if (m_assembly != nullptr)
 		return false;
 
-	LOG("----------------------------------------");
-	LOG("");
+	// LOG("----------------------------------------");
+	// LOG("");
 
 	m_assembly = mono_domain_assembly_open(m_domain, inBinary.data());
 	if (!m_assembly)
