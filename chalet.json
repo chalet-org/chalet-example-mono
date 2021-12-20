@@ -27,12 +27,15 @@
 	},
 	"targets": {
 		"csbuild-step": {
-			"kind": "script",
+			"kind": "process",
 			"description": "MSBuild: Compile C#",
-			"file.!debug.!windows": "csbuild_Release.sh",
-			"file.!debug.windows": "csbuild_Release.bat",
-			"file.debug.!windows": "csbuild_Debug.sh",
-			"file.debug.windows": "csbuild_Debug.bat"
+			"path": "msbuild",
+			"arguments": [
+				"/nologo",
+				"/clp:ForceConsoleColor",
+				"/property:Configuration=${configuration}",
+				"/property:Platform=AnyCPU"
+			]
 		},
 		"chalet-example-mono": {
 			"kind": "executable",
