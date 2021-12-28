@@ -78,7 +78,7 @@
 			"kind": "bundle",
 			"configuration": "Release",
 			"subdirectory": "lib/mono/4.5",
-			"include": [
+			"include.!windows": [
 				"mscorlib"
 			],
 			"include.windows": [
