@@ -5,6 +5,9 @@
 		"Debug",
 		"Release"
 	],
+	"searchPaths.macos": [
+		"/Library/Frameworks/Mono.framework/Versions/Current/bin"
+	],
 	"searchPaths.windows": [
 		"${env:ProgramFiles}/Mono/bin",
 		"${env:ProgramFiles}/Mono/lib/mono/4.5"
@@ -13,7 +16,6 @@
 		"language": "C++",
 		"settings:Cxx": {
 			"cppStandard": "c++20",
-			"cppStandard.macos": "c++2a",
 			"warnings": "pedantic",
 			"defines.debug": [
 				"_DEBUG"
@@ -63,12 +65,11 @@
 				"links.windows": [
 					"mono-2.0-sgen"
 				],
-				"links.macos": [
-					"mono-2.0",
-					"iconv"
-				],
-				"links.linux": [
+				"links.!windows": [
 					"mono-2.0"
+				],
+				"links.macos": [
+					"iconv"
 				]
 			}
 		}
@@ -76,6 +77,7 @@
 	"distribution": {
 		"libmono": {
 			"kind": "bundle",
+			"condition": "!macos",
 			"configuration": "Release",
 			"subdirectory": "lib/mono/4.5",
 			"include.!windows": [
@@ -87,12 +89,15 @@
 		},
 		"all": {
 			"kind": "bundle",
+			"condition": "!macos",
 			"configuration": "Release",
 			"subdirectory": "bin",
 			"buildTargets": "*",
 			"includeDependentSharedLibraries": false,
+			"include": [
+				"cs-test.dll"
+			],
 			"include.windows": [
-				"cs-test.dll",
 				"mono-2.0-sgen.dll"
 			]
 		}
