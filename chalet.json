@@ -20,6 +20,9 @@
 			"defines.debug": [
 				"_DEBUG"
 			],
+			"includeDirs": [
+				"src"
+			],
 			"includeDirs.windows": [
 				"${env:ProgramFiles}/Mono/include/mono-2.0"
 			],
@@ -48,8 +51,6 @@
 		},
 		"chalet-example-mono": {
 			"kind": "executable",
-			"location": "src",
-			"runTarget": true,
 			"settings:Cxx": {
 				"staticLinking": true,
 				"pch": "src/PCH.hpp",
@@ -71,7 +72,9 @@
 				"links.macos": [
 					"iconv"
 				]
-			}
+			},
+			"files": "src/**.cpp",
+			"runTarget": true
 		}
 	},
 	"distribution": {
