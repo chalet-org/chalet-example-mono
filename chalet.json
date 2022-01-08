@@ -12,28 +12,6 @@
 		"${env:ProgramFiles}/Mono/bin",
 		"${env:ProgramFiles}/Mono/lib/mono/4.5"
 	],
-	"abstracts:*": {
-		"language": "C++",
-		"settings:Cxx": {
-			"cppStandard": "c++20",
-			"warnings": "pedantic",
-			"defines.debug": [
-				"_DEBUG"
-			],
-			"includeDirs": [
-				"src"
-			],
-			"includeDirs.windows": [
-				"${env:ProgramFiles}/Mono/include/mono-2.0"
-			],
-			"includeDirs.macos": [
-				"/Library/Frameworks/Mono.framework/Versions/Current/include/mono-2.0"
-			],
-			"includeDirs.linux": [
-				"/usr/include/mono-2.0"
-			]
-		}
-	},
 	"targets": {
 		"csbuild-step": {
 			"kind": "process",
@@ -51,11 +29,29 @@
 		},
 		"chalet-example-mono": {
 			"kind": "executable",
+			"language": "C++",
 			"settings:Cxx": {
+				"cppStandard": "c++20",
+				"warnings": "pedantic",
 				"staticLinking": true,
 				"pch": "src/PCH.hpp",
 				"defines": [
 					"_THREAD_SAFE"
+				],
+				"defines.debug": [
+					"_DEBUG"
+				],
+				"includeDirs": [
+					"src"
+				],
+				"includeDirs.windows": [
+					"${env:ProgramFiles}/Mono/include/mono-2.0"
+				],
+				"includeDirs.macos": [
+					"/Library/Frameworks/Mono.framework/Versions/Current/include/mono-2.0"
+				],
+				"includeDirs.linux": [
+					"/usr/include/mono-2.0"
 				],
 				"libDirs.windows": [
 					"${env:ProgramFiles}/Mono/lib"
