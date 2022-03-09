@@ -33,8 +33,8 @@
 			"settings:Cxx": {
 				"cppStandard": "c++20",
 				"warnings": "pedantic",
-				"staticLinking": true,
-				"pch": "src/PCH.hpp",
+				"staticRuntimeLibrary": true,
+				"precompiledHeader": "src/PCH.hpp",
 				"defines": [
 					"_THREAD_SAFE"
 				],
