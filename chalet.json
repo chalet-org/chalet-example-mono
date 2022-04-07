@@ -15,7 +15,7 @@
 	"targets": {
 		"csbuild-step": {
 			"kind": "process",
-			"description": "MSBuild: Compile C#",
+			"outputDescription": "MSBuild: Compile C#",
 			"path": "msbuild",
 			"arguments": [
 				"-nologo",
