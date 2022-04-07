@@ -14,4 +14,4 @@ Download & Install (Mono (Either Channel))[https://www.mono-project.com/download
 
 If possible, use the distro directions [here](https://www.mono-project.com/download/stable/#download-lin)
 
-For Arch Linux, you can try the `mono` package, but may need to build `mono-git` from the AUR, also make sure you have msbuild available
+For Arch Linux, you can try the `mono` package, but may need to build `mono-git` from the AUR, also make sure `msbuild` is installed.
