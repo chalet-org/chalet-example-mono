@@ -76,7 +76,6 @@
 		"libmono": {
 			"kind": "bundle",
 			"condition": "!macos",
-			"configuration": "Release",
 			"subdirectory": "lib/mono/4.5",
 			"include.!windows": [
 				"mscorlib"
@@ -88,7 +87,6 @@
 		"all": {
 			"kind": "bundle",
 			"condition": "!macos",
-			"configuration": "Release",
 			"subdirectory": "bin",
 			"buildTargets": "*",
 			"includeDependentSharedLibraries": false,
