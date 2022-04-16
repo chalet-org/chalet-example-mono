@@ -5,10 +5,10 @@
 		"Debug",
 		"Release"
 	],
-	"searchPaths.macos": [
+	"searchPaths[:macos]": [
 		"/Library/Frameworks/Mono.framework/Versions/Current/bin"
 	],
-	"searchPaths.windows": [
+	"searchPaths[:windows]": [
 		"${env:ProgramFiles}/Mono/bin",
 		"${env:ProgramFiles}/Mono/lib/mono/4.5"
 	],
@@ -38,34 +38,34 @@
 				"defines": [
 					"_THREAD_SAFE"
 				],
-				"defines.debug": [
+				"defines[:debug]": [
 					"_DEBUG"
 				],
 				"includeDirs": [
 					"src"
 				],
-				"includeDirs.windows": [
+				"includeDirs[:windows]": [
 					"${env:ProgramFiles}/Mono/include/mono-2.0"
 				],
-				"includeDirs.macos": [
+				"includeDirs[:macos]": [
 					"/Library/Frameworks/Mono.framework/Versions/Current/include/mono-2.0"
 				],
-				"includeDirs.linux": [
+				"includeDirs[:linux]": [
 					"/usr/include/mono-2.0"
 				],
-				"libDirs.windows": [
+				"libDirs[:windows]": [
 					"${env:ProgramFiles}/Mono/lib"
 				],
-				"libDirs.macos": [
+				"libDirs[:macos]": [
 					"/Library/Frameworks/Mono.framework/Versions/Current/lib"
 				],
-				"links.windows": [
+				"links[:windows]": [
 					"mono-2.0-sgen"
 				],
-				"links.!windows": [
+				"links[:!windows]": [
 					"mono-2.0"
 				],
-				"links.macos": [
+				"links[:macos]": [
 					"iconv"
 				]
 			},
@@ -75,25 +75,25 @@
 	"distribution": {
 		"libmono": {
 			"kind": "bundle",
-			"condition": "!macos",
+			"condition": "[:!macos]",
 			"subdirectory": "lib/mono/4.5",
-			"include.!windows": [
+			"include[:!windows]": [
 				"mscorlib"
 			],
-			"include.windows": [
+			"include[:windows]": [
 				"mscorlib.dll"
 			]
 		},
 		"all": {
 			"kind": "bundle",
-			"condition": "!macos",
+			"condition": "[:!macos]",
 			"subdirectory": "bin",
 			"buildTargets": "*",
 			"includeDependentSharedLibraries": false,
 			"include": [
 				"cs-test.dll"
 			],
-			"include.windows": [
+			"include[:windows]": [
 				"mono-2.0-sgen.dll"
 			]
 		}
