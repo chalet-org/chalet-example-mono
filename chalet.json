@@ -32,7 +32,7 @@
 			"language": "C++",
 			"settings:Cxx": {
 				"cppStandard": "c++20",
-				"warnings": "pedantic",
+				"warningsPreset": "pedantic",
 				"staticRuntimeLibrary": true,
 				"precompiledHeader": "src/PCH.hpp",
 				"defines": [
