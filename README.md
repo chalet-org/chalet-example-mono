@@ -1,4 +1,4 @@
-## chalet-example-mono
+# chalet-example-mono
 
 This repository showcases how to setup a [Chalet](https://www.chalet-work.space) project with [Mono](https://www.mono-project.com) / C# Scripting in a C++ application across all platforms supported by Mono. It also includes some basic configuration for use with [Visual Studio Code](https://code.visualstudio.com/).
 
