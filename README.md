@@ -4,8 +4,6 @@ This repository showcases how to setup a [Chalet](https://www.chalet-work.space)
 
 To get started, [download Chalet](https://www.chalet-work.space/download), check out some of the documentation for it, and either build with the various commands from the command line, or try out the [Chalet VS Code Extension](https://marketplace.visualstudio.com/items?itemName=chalet-org.vscode-chalet) (recommended).
 
-# Mono / C# Scripting in a C++ application
-
 ### Windows
 
 Download & Install (Mono Runtime 64-bit)[https://www.mono-project.com/download/stable/#download-win]
