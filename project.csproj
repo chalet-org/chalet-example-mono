@@ -6,7 +6,7 @@
 		<OutputType>Library</OutputType>
 		<BaseIntermediateOutputPath>csbuild/</BaseIntermediateOutputPath>
 		<AssemblyName>cs-test</AssemblyName>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
 		<FileAlignment>512</FileAlignment>
 		<BaseDirectory>.</BaseDirectory>
 		<OutputPath>.</OutputPath>
