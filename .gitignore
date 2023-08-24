@@ -7,6 +7,7 @@ Thumbs.db
 build
 dist
 chalet_external/
+.env*
 
 # Mono / C#
 .vs
