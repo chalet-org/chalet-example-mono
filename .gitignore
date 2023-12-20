@@ -6,15 +6,13 @@ dist/
 .env*
 
 # C# / Mono
-csbuild/
-cs-test*.dll
-cs-test*.pdb
 mono_crash*.json
 
 # Editors
 .idea/
 .vs/
 .vscode/
+.fleet/
 
 # Other
 Thumbs.db
