@@ -3,17 +3,18 @@
 	<PropertyGroup>
 		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<BuildDir Condition=" '$(BuildDir)' == '' ">build/$(Configuration)/</BuildDir>
 		<OutputType>Library</OutputType>
-		<BaseIntermediateOutputPath>csbuild/</BaseIntermediateOutputPath>
+		<BaseDirectory>.</BaseDirectory>
+		<OutputPath>$(BuildDir)</OutputPath>
+		<BaseIntermediateOutputPath>$(BuildDir)csharp/</BaseIntermediateOutputPath>
+		<IntermediateOutputPath>$(BuildDir)csharp/obj</IntermediateOutputPath>
 		<AssemblyName>cs-test</AssemblyName>
 		<TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
 		<FileAlignment>512</FileAlignment>
-		<BaseDirectory>.</BaseDirectory>
-		<OutputPath>.</OutputPath>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<AssemblyName>cs-test-d</AssemblyName>
 		<DebugSymbols>false</DebugSymbols>
 		<DebugType>full</DebugType>
 		<Optimize>false</Optimize>

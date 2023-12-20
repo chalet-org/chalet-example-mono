@@ -21,7 +21,7 @@
 				"-nologo",
 				"-verbosity:m",
 				"-clp:ForceConsoleColor",
-				// "-property:OutputPath=${buildDir}",
+				"-property:BuildDir=${buildDir}/",
 				"-property:Configuration=${configuration}",
 				"-property:Platform=AnyCPU",
 				"project.csproj"
@@ -52,6 +52,9 @@
 				],
 				"includeDirs[:linux]": [
 					"/usr/include/mono-2.0"
+				],
+				"libDirs": [
+					"${buildDir}/csharp"
 				],
 				"libDirs[:windows]": [
 					"${env:ProgramFiles}/Mono/lib"

@@ -2,23 +2,23 @@
 
 #include "Callbacks/TestCallback.hpp"
 
-int main(/*const int argc, const char* const argv[]*/)
+std::string getCsFilePath(const std::string exePath)
 {
-#if defined(MONOSCRIPT_DEBUG)
-	const std::string file = "cs-test-d.dll";
-	// #if defined(MONOSCRIPT_WIN32)
-	// int buildResult = std::system("msbuild.exe");
-	// #else
-	// int buildResult = std::system("msbuild");
-	// #endif
-	// if (buildResult != EXIT_SUCCESS)
-	// {
-	// 	std::cerr << "Build failed. See output above." << std::endl;
-	// 	return buildResult;
-	// }
-#else
-	const std::string file = "cs-test.dll";
-#endif
+	auto end = exePath.find_last_of('/');
+	auto path = end != std::string::npos ? exePath.substr(0, end) : "";
+	path += '/';
+	path += "cs-test.dll";
+	return path;
+}
+
+int main(const int argc, const char* const argv[])
+{
+	auto csFile = getCsFilePath(std::string(argv[0]));
+	if (csFile.empty())
+	{
+		std::cerr << "Error resolving cs dll" << std::endl;
+		return 1;
+	}
 
 	const std::string domain = "monoscript";
 	monoscript::MonoRuntime runtime(domain);
@@ -30,9 +30,9 @@ int main(/*const int argc, const char* const argv[]*/)
 
 	runtime.addCallback("MonoEmbed::gimme", MonoEmbed::gimme);
 
-	if (!runtime.openDomainAssembly(file))
+	if (!runtime.openDomainAssembly(csFile))
 	{
-		std::cerr << "The Mono domain assembly for " << file << " couldn't be opened." << std::endl;
+		std::cerr << "The Mono domain assembly for " << csFile << " couldn't be opened." << std::endl;
 		return 1;
 	}
 
