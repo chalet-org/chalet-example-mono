@@ -11,7 +11,7 @@ std::string getCsFilePath(const std::string exePath)
 	return path;
 }
 
-int main(const int argc, const char* const argv[])
+int main(const int, const char* const argv[])
 {
 	auto csFile = getCsFilePath(std::string(argv[0]));
 	if (csFile.empty())
