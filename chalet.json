@@ -25,6 +25,9 @@
 				"-property:Configuration=${configuration}",
 				"-property:Platform=AnyCPU",
 				"project.csproj"
+			],
+			"dependsOn": [
+				"src_cs/**.cs"
 			]
 		},
 		"chalet-example-mono": {
